@@ -1,0 +1,421 @@
+{
+	"info": {
+		"_postman_id": "419db0a6-c1a4-43b4-b931-e1e4960c2e31",
+		"name": "drayson test API",
+		"description": "API to allow backend testing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "products",
+			"item": [
+				{
+					"name": "Succsessful GET request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6bf31e6e-a8bd-4d4d-ae6a-7e9ad1bea147",
+								"exec": [
+									"pm.test(\"Successful GET request\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.response.to.not.be.error; ",
+									"    pm.response.to.be.withBody;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:5000/v1/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"products"
+							]
+						},
+						"description": "Return a list of products"
+					},
+					"response": []
+				},
+				{
+					"name": "Unsuccessful GET request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7060b7ec-f5ad-49a9-934b-67d73cc0b03a",
+								"exec": [
+									"pm.test(\"Unsuccessful GET request\", function () {",
+									"    pm.response.to.have.status(404);",
+									"    pm.response.to.be.error; ",
+									"    pm.response.to.be.withBody;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:5000/v1/products2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"products2"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Folder for products"
+		},
+		{
+			"name": "product",
+			"item": [
+				{
+					"name": "POST EMPTY",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "521d0d91-303d-4600-bda7-ccfd82ccf115",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "{{name}}",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "{{price}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000//v1/product/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"",
+								"v1",
+								"product",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST params price and name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "521d0d91-303d-4600-bda7-ccfd82ccf115",
+								"exec": [
+									"",
+									"pm.test(\"POST with name and price status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "noname",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "10.10",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/v1/product",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a26a039f-d88c-4e9d-92d5-90f00a1a5685",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Body matches string\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"Personalised cufflinks\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:5000/v1/product/:product_code",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"product",
+								":product_code"
+							],
+							"variable": [
+								{
+									"key": "product_code",
+									"value": "2"
+								}
+							]
+						},
+						"description": "Return a single product"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Price",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "63569f01-24f5-4106-a17c-fa58539f8680",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"pm.test(\"Status code name has string\", function () {",
+									"    pm.response.to.have.status(\"Created\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "{{name}}",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "{{price}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000//v1/product/:product_code?price=5.5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"",
+								"v1",
+								"product",
+								":product_code"
+							],
+							"query": [
+								{
+									"key": "price",
+									"value": "5.5"
+								}
+							],
+							"variable": [
+								{
+									"key": "product_code",
+									"value": "4"
+								}
+							]
+						},
+						"description": "Update a product"
+					},
+					"response": []
+				},
+				{
+					"name": "",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "50745169-75ae-4cae-8fc9-e81ccfc21138",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:5000//v1/product/:product_code",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"",
+								"v1",
+								"product",
+								":product_code"
+							],
+							"variable": [
+								{
+									"key": "product_code",
+									"value": "9"
+								}
+							]
+						},
+						"description": "Delete a product"
+					},
+					"response": []
+				}
+			],
+			"description": "Folder for product"
+		}
+	]
+}
