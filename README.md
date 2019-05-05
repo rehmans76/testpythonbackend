@@ -1,4 +1,4 @@
-# testpythonbackend
+# Test python backend
 
 Tests for python based web application backend. Tests are written using postman, based on the  API's capabilities as descibed in swagger documents.
 Run the tests:
