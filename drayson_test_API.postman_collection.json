@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "419db0a6-c1a4-43b4-b931-e1e4960c2e31",
+		"_postman_id": "f7dcaec8-5a57-473c-bcd8-5ad9e6ae5d8f",
 		"name": "drayson test API",
 		"description": "API to allow backend testing",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -150,14 +150,13 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:5000//v1/product/",
+							"raw": "http://localhost:5000/v1/product/",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "5000",
 							"path": [
-								"",
 								"v1",
 								"product",
 								""
@@ -211,7 +210,7 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:5000/v1/product",
+							"raw": "http://localhost:5000/v1/product?name=very_new_product&price=99.99",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -220,13 +219,161 @@
 							"path": [
 								"v1",
 								"product"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "very_new_product"
+								},
+								{
+									"key": "price",
+									"value": "99.99"
+								}
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "",
+					"name": "POST params invalid price and name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "521d0d91-303d-4600-bda7-ccfd82ccf115",
+								"exec": [
+									"",
+									"pm.test(\"POST with name and price status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "noname",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "10.10",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/v1/product?name=very_new_product&price=-9.99",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"product"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "very_new_product"
+								},
+								{
+									"key": "price",
+									"value": "-9.99"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST params price and name very long name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "521d0d91-303d-4600-bda7-ccfd82ccf115",
+								"exec": [
+									"",
+									"pm.test(\"POST with name and price status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "noname",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "10.10",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/v1/product?name=very_new_product is very long string here just to check app does not crash with long name.&price=99.99",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"product"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "very_new_product is very long string here just to check app does not crash with long name."
+								},
+								{
+									"key": "price",
+									"value": "99.99"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "product_code 2",
 					"event": [
 						{
 							"listen": "test",
@@ -332,14 +479,13 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:5000//v1/product/:product_code?price=5.5",
+							"raw": "http://localhost:5000/v1/product/:product_code?price=5.5",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "5000",
 							"path": [
-								"",
 								"v1",
 								"product",
 								":product_code"
@@ -362,7 +508,7 @@
 					"response": []
 				},
 				{
-					"name": "",
+					"name": "product code 9",
 					"event": [
 						{
 							"listen": "test",
@@ -389,16 +535,18 @@
 								"value": "application/json"
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "http://localhost:5000//v1/product/:product_code",
+							"raw": "http://localhost:5000/v1/product/:product_code",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "5000",
 							"path": [
-								"",
 								"v1",
 								"product",
 								":product_code"
@@ -416,6 +564,60 @@
 				}
 			],
 			"description": "Folder for product"
+		},
+		{
+			"name": "http://localhost:5000/v1/product/:product_code",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "50745169-75ae-4cae-8fc9-e81ccfc21138",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:5000/v1/product/:product_code",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"product",
+						":product_code"
+					],
+					"variable": [
+						{
+							"key": "product_code",
+							"value": "9"
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
