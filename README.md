@@ -23,4 +23,8 @@ For CI/CD system API will be deployed to Cluster and postman collection will be 
 
 Test results analysis:
 
-There are serious bugs with just minimum set of tests, also app does not seem to recover from failure i.e. if there are test run failed during first test run, follow on tests most of the tests will fail. There are more possible combinition of tests which should make part of suite of tests for API as well as exploratory testing to find more issues related to load and performance testing of the API.
+There are serious bugs with just minimum set of tests, also app does not seem to recover from failure i.e. if there are test run failed during first test run, follow on tests most of the tests will fail. Please see the screenshot of test result Screenshot_2019-05-05_22.58.52.png
+
+Further tests to be written:
+
+There are more possible combinition of tests which should make part of suite of tests for API, as well as exploratory testing to find more issues. Also API should be tested for load and performance.
